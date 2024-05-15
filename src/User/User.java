@@ -1,18 +1,22 @@
+package User;
+
 public class User {
     private int id;
     private String name;
     private String lastname;
     private Role role;
-    private String ficsalId;
+    private String identityNumber;
+    private String password;
     public User(){
 
     }
-    public User(int id, String name, String lastname, Role role, String ficsalId) {
+    public User(int id, String name, String lastname, Role role, String identityNumber,String password) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.role = role;
-        this.ficsalId = ficsalId;
+        this.identityNumber = identityNumber;
+        this.password = password;
     }
 
     public int getId() {
@@ -47,11 +51,19 @@ public class User {
         this.role = role;
     }
 
-    public String getFicsalId() {
-        return ficsalId;
+    public String getIdentityNumber() {
+        return identityNumber;
     }
 
-    public void setFicsalId(String ficsalId) {
-        this.ficsalId = ficsalId;
+    public void setIdentityNumber(String identityNumber) {
+        this.identityNumber = identityNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

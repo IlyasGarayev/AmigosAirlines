@@ -1,4 +1,7 @@
+package User;
+
 public enum Role {
     ADMIN,
-    USer
+    User
 }
+
