@@ -4,19 +4,20 @@ public class User {
     private int id;
     private String name;
     private String lastname;
-    private Role role;
     private String identityNumber;
     private String password;
+    private String gmail;
     public User(){
 
     }
-    public User(int id, String name, String lastname, Role role, String identityNumber,String password) {
+
+    public User(int id, String name, String lastname, String identityNumber, String password, String gmail) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
-        this.role = role;
         this.identityNumber = identityNumber;
         this.password = password;
+        this.gmail = gmail;
     }
 
     public int getId() {
@@ -43,13 +44,6 @@ public class User {
         this.lastname = lastname;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     public String getIdentityNumber() {
         return identityNumber;
@@ -65,5 +59,23 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
+    }
+    @Override
+    public String toString() {
+        return "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", identityNumber='" + identityNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", gmail='" + gmail + '\'' + '\n'
+                ;
     }
 }

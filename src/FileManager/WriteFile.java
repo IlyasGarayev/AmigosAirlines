@@ -1,31 +1,38 @@
 package FileManager;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 public class WriteFile {
-    private Path path;
+//    private Path path;
+//
+//    public WriteFile(Path path){
+//        this.path = path;
+//    }
+//
+//    public void write(String string) throws IOException{ // Append or write
+//            OutputStream outputStream = Files.newOutputStream(
+//                    path,
+//                    StandardOpenOption.APPEND,
+//                    StandardOpenOption.WRITE
+//            );
+//
+//            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+//
+//            bufferedWriter.write(string);
+//
+//            bufferedWriter.close();
+//    }
 
-    public WriteFile(Path path){
-        this.path = path;
-    }
-
-    public void write(String string) throws IOException{ // Append or write
-            OutputStream outputStream = Files.newOutputStream(
-                    path,
-                    StandardOpenOption.APPEND,
-                    StandardOpenOption.WRITE
-            );
-
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
-
-            bufferedWriter.write(string);
-
-            bufferedWriter.close();
+    public void fileYaz(String path,String userData) {
+        try {
+            FileWriter fileWriter = new FileWriter(path,true);
+            fileWriter.write(userData);
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
+}
