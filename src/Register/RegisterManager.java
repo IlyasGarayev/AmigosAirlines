@@ -52,7 +52,7 @@ public class RegisterManager implements RegisterService {
             user.setPassword(password);
         }
         WriteFile writeFile = new WriteFile();
-        writeFile.fileYaz("users.txt",user.toString());
+        writeFile.fileYaz("src/Datas/users.txt",user.toString());
     }
 
     private static boolean isValidIdentityNumber(String identityNumber) {

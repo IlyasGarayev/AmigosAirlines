@@ -21,7 +21,7 @@ public class LoginManager implements LoginService {
         scanner.close();
 
         ReadFile reader = new ReadFile();
-        List<String> gmailAndPassword = reader.readGmailAndPassword("users.txt");
+        List<String> gmailAndPassword = reader.readGmailAndPassword("src/Datas/users.txt");
         boolean loginSuccess = false;
         for (int i = 0; i < gmailAndPassword.size(); i += 2) {
             String userPassword = gmailAndPassword.get(i);
