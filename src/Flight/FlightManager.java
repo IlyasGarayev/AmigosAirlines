@@ -1,6 +1,5 @@
 package Flight;
 
-import FileManager.ReadFile;
 import FileManager.WriteFile;
 
 import java.io.IOException;
