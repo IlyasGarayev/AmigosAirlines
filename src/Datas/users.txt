@@ -1,3 +1,0 @@
-name='Aydin', lastname='Hesenov', identityNumber='ay11221', password='aydin12345', gmail='aydin@gmail.com'
-name='Samir', lastname='Sabiroc', identityNumber='sami222', password='samir222', gmail='samir@gmail.com'
-name='Abbas', lastname='Abbasov', identityNumber='abbs111', password='abbas12345', gmail='abbas@gmail.com'

@@ -70,11 +70,10 @@ public class User {
     }
     @Override
     public String toString() {
-        return "name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", identityNumber='" + identityNumber + '\'' +
-                ", password='" + password + '\'' +
-                ", gmail='" + gmail + '\'' + '\n'
-                ;
+        return name + ";" +
+                lastname + ";" +
+                identityNumber + ";" +
+                password + ";" +
+                gmail;
     }
 }

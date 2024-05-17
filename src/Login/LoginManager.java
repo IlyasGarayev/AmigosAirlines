@@ -30,7 +30,7 @@ public class LoginManager implements LoginService {
             FileUsers searchInFile = new FileUsers(filePath);
             String foundRecord = searchInFile.search("gmail", gmail);
             if (!foundRecord.isEmpty()) {
-                String[] elements = foundRecord.split(",");
+                String[] elements = foundRecord.trim().split(",");
                 for (String element : elements) {
                     String[] keyValue = element.split("=");
                     if (keyValue.length == 2 && keyValue[0].trim().equals("password") && keyValue[1].trim().equals(password)) {
