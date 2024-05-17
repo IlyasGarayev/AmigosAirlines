@@ -16,6 +16,7 @@ public abstract class SearchInFile {
     }
 
     public String search(String key, String value) throws IOException {
+        System.out.println("Basladi");
         int index = getIndex(key);
         if (index == -1) return "";
         try (InputStream inputStream = Files.newInputStream(path, StandardOpenOption.READ);
@@ -23,7 +24,7 @@ public abstract class SearchInFile {
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                String[] elements = line.split(",");
+                String[] elements = line.split(";");
                 if (index <= elements.length && elements[index].trim().equals(value)) {
                     return line;
                 }

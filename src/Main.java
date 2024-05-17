@@ -11,7 +11,7 @@ public class Main {
         System.out.println("1)Login \n");
         System.out.println("2)Register \n");
         RegisterService registerService = new RegisterManager(user);
-        registerService.register();
+        //registerService.register();
         LoginService loginService = new LoginManager();
         loginService.login();
     }
