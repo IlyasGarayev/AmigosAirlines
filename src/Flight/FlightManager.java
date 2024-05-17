@@ -2,6 +2,7 @@ package Flight;
 
 import FileManager.FileFlights;
 import FileManager.WriteFile;
+import TicketManager.TicketManager;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -41,6 +42,7 @@ public class FlightManager implements FlightService{
         try {
             WriteFile writeFile = new WriteFile(filePath);
             writeFile.write(flight.toString());
+            TicketManager.allTickets.put(flight, new ArrayList<>());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
