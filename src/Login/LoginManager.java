@@ -1,8 +1,10 @@
 package Login;
 
+import FileManager.FileUsers;
 import FileManager.SearchInFile;
 import Login.LoginService;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,7 +14,7 @@ public class LoginManager implements LoginService {
 
     @Override
     public void login() {
-        Path filePath = Paths.get("users.txt");
+        Path filePath = Paths.get("src/Datas/users.txt");
 
 
         System.out.println("Logine Xos Gelmisiniz !");
@@ -25,19 +27,7 @@ public class LoginManager implements LoginService {
 
         try {
             Files.createDirectories(filePath.getParent());
-            SearchInFile searchInFile = new SearchInFile(filePath) {
-                @Override
-                public int getIndex(String key) {
-                    switch (key) {
-                        case "gmail":
-                            return 4;
-                        case "password":
-                            return 3;
-                        default:
-                            return -1;
-                    }
-                }
-            };
+            FileUsers searchInFile = new FileUsers(filePath);
             String foundRecord = searchInFile.search("gmail", gmail);
             if (!foundRecord.isEmpty()) {
                 String[] elements = foundRecord.split(",");
@@ -52,7 +42,7 @@ public class LoginManager implements LoginService {
             } else {
                 System.out.println("Istifadeci tapilmadi!");
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Giriş zamanı xəta baş verdi: " + e.getMessage());
         }
     }
