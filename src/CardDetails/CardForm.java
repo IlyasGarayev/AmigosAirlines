@@ -39,6 +39,9 @@ public class CardForm extends Chain {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        finally {
+            scanner.close();
+        }
 
         System.out.println("Melumatlar tesdiqlendi!");
         Ticket ticket = new Ticket(

@@ -18,7 +18,7 @@ public class LoginManager implements LoginService {
         String gmail = scanner.nextLine();
         System.out.println("Passwordunuzu daxil edin -> ");
         String password = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
 
         try {
             Path filePath = Paths.get("src/Datas/users.txt");

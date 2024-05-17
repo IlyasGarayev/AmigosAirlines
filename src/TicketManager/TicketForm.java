@@ -19,8 +19,9 @@ public class TicketForm extends Chain {
 
     @Override
     public void process(User user) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Haradan: ");
+
+        Scanner scanner = new Scanner(System.in);
         String origin = scanner.nextLine();
         System.out.println("Haraya: ");
         String destination = scanner.nextLine();
@@ -44,6 +45,7 @@ public class TicketForm extends Chain {
              FileFlights searchInFile = new FileFlights(path);
              String line = searchInFile.search("originAndDestination", origin + destination);
              if(line != null){
+                 System.out.println(line);
                  String[] elemets = line.trim().split(";");
                  String dateString = elemets[searchInFile.getIndex("flightTime")];
                  SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);

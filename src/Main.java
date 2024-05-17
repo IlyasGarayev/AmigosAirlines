@@ -28,7 +28,16 @@ public class Main {
 ////        flightService.update();
 ////        CardForm cardForm = new CardForm();
 ////        cardForm.process(user);
+        User user = new User();
+//        new RegisterManager(user).register();
+
+        new LoginManager().login();
         TicketForm ticketForm = new TicketForm();
-        ticketForm.process(new User());
+
+        ticketForm.process(user);
+
+        new CardForm().process(user);
+
+
     }
 }

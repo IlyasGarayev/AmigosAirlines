@@ -20,9 +20,6 @@ public class RegisterManager implements RegisterService {
     public RegisterManager(User user) {
         this.user = user;
     }
-    public RegisterManager(){
-
-    }
 
     @Override
     public void register() {
