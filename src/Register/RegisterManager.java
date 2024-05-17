@@ -4,12 +4,15 @@ import FileManager.WriteFile;
 import Register.RegisterService;
 import User.User;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class RegisterManager implements RegisterService {
     private User user;
-
     public RegisterManager(User user) {
         this.user = user;
     }
@@ -19,6 +22,7 @@ public class RegisterManager implements RegisterService {
 
     @Override
     public void register() {
+        Path filePath = Paths.get("src/Datas/users.txt");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registra Xos Gelmisiniz !");
         System.out.print("Adinizi daxil edin -> ");
@@ -51,8 +55,13 @@ public class RegisterManager implements RegisterService {
         } else {
             user.setPassword(password);
         }
-        WriteFile writeFile = new WriteFile();
-        writeFile.fileYaz("src/Datas/users.txt",user.toString());
+        try {
+            Files.createDirectories(filePath.getParent());
+            WriteFile writeFile = new WriteFile(filePath);
+            writeFile.write(user.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static boolean isValidIdentityNumber(String identityNumber) {
@@ -70,6 +79,7 @@ public class RegisterManager implements RegisterService {
     private static boolean isValidPassword(String password) {
         return password != null && password.length() >= 8;
     }
+
 }
 
 

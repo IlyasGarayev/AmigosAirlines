@@ -1,42 +1,60 @@
 package Login;
 
-import FileManager.ReadFile;
-import User.User;
+import FileManager.SearchInFile;
+import Login.LoginService;
 
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class LoginManager implements LoginService {
 
-
     @Override
     public void login() {
+        Path filePath = Paths.get("users.txt");
+
+
         System.out.println("Logine Xos Gelmisiniz !");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Gmailinizi daxil edin -> ");
         String gmail = "'" + scanner.nextLine() + "'";
         System.out.println("Passwordunuzu daxil edin -> ");
-        String password ="'"+ scanner.nextLine() +"'";
-
+        String password = "'" + scanner.nextLine() + "'";
         scanner.close();
 
-        ReadFile reader = new ReadFile();
-        List<String> gmailAndPassword = reader.readGmailAndPassword("src/Datas/users.txt");
-        boolean loginSuccess = false;
-        for (int i = 0; i < gmailAndPassword.size(); i += 2) {
-            String userPassword = gmailAndPassword.get(i);
-            String userGmail = gmailAndPassword.get(i + 1);
-
-            if (password.equals(userPassword) && gmail.equals(userGmail)) {
-                loginSuccess = true;
-                break;
+        try {
+            Files.createDirectories(filePath.getParent());
+            SearchInFile searchInFile = new SearchInFile(filePath) {
+                @Override
+                public int getIndex(String key) {
+                    switch (key) {
+                        case "gmail":
+                            return 4;
+                        case "password":
+                            return 3;
+                        default:
+                            return -1;
+                    }
+                }
+            };
+            String foundRecord = searchInFile.search("gmail", gmail);
+            if (!foundRecord.isEmpty()) {
+                String[] elements = foundRecord.split(",");
+                for (String element : elements) {
+                    String[] keyValue = element.split("=");
+                    if (keyValue.length == 2 && keyValue[0].trim().equals("password") && keyValue[1].trim().equals(password)) {
+                        System.out.println("Login Ugurlu Oldu!");
+                        return;
+                    }
+                }
+                System.out.println("Etibarsiz Sifre!");
+            } else {
+                System.out.println("Istifadeci tapilmadi!");
             }
-        }
-
-        if (loginSuccess) {
-            System.out.println("Giriş Ugurla Basa Catdi!");
-        } else {
-            System.out.println("Giriş Ugursuz oldu. Xahis Olunur yeniden yoxlayin");
+        } catch (Exception e) {
+            System.err.println("Giriş zamanı xəta baş verdi: " + e.getMessage());
         }
     }
 }
+

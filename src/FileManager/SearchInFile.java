@@ -17,20 +17,17 @@ public abstract class SearchInFile {
 
     public String search(String key, String value) throws IOException {
         int index = getIndex(key);
-        if(index == -1) return "";
-        InputStream inputStream = Files.newInputStream(
-                path,
-                StandardOpenOption.READ
-        );
+        if (index == -1) return "";
+        try (InputStream inputStream = Files.newInputStream(path, StandardOpenOption.READ);
+             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-        String line;
-        while( (line = bufferedReader.readLine()) != null){
-             String[] elements = line.split(";");
-             if(elements[index].equals(value)){
-                 return line;  // Dc de danisariq
-             }
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] elements = line.split(",");
+                if (index <= elements.length && elements[index].trim().equals(value)) {
+                    return line;
+                }
+            }
         }
         return "";
     }

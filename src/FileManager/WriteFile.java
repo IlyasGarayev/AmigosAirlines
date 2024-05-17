@@ -6,33 +6,25 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 public class WriteFile {
-//    private Path path;
-//
-//    public WriteFile(Path path){
-//        this.path = path;
-//    }
-//
-//    public void write(String string) throws IOException{ // Append or write
-//            OutputStream outputStream = Files.newOutputStream(
-//                    path,
-//                    StandardOpenOption.APPEND,
-//                    StandardOpenOption.WRITE
-//            );
-//
-//            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
-//
-//            bufferedWriter.write(string);
-//
-//            bufferedWriter.close();
-//    }
+    private Path path ;
 
-    public void fileYaz(String path,String userData) {
-        try {
-            FileWriter fileWriter = new FileWriter(path,true);
-            fileWriter.write(userData);
-            fileWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public WriteFile(Path path){
+        this.path = path;
     }
+
+    public void write(String string) throws IOException {
+            OutputStream outputStream = Files.newOutputStream(
+                    path,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE
+            );
+
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+
+            bufferedWriter.write(string);
+
+            bufferedWriter.close();
+    }
+
+
 }
