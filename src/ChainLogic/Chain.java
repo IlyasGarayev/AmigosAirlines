@@ -4,6 +4,11 @@ import User.User;
 
 public abstract class Chain {
     private Chain next;
+    private Chain previous;
+
+    public void setPrevious(Chain previous) {
+        this.previous = previous;
+    }
 
     public void setNext(Chain next) {
         this.next = next;
@@ -22,6 +27,14 @@ public abstract class Chain {
         }
         catch(RuntimeException ex){
             throw new RuntimeException(ex);
+        }
+    }
+    // reverse
+
+
+    public void doPrevious(User user){
+        if(previous != null){
+            previous.doNext(user);
         }
     }
 

@@ -13,8 +13,7 @@ public class FileFlights extends SearchInFile{
             case "flightNumber" -> 0;
             case "originAndDestination" -> 1;
             case "capacity" -> 2;
-            case "bookedSeats" -> 3;
-            case "flightTime" -> 4;
+            case "flightTime" -> 3;
             default -> -1;
         };
     }
