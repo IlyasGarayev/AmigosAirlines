@@ -6,8 +6,9 @@ import java.util.List;
 public class Ticket {
     private String id;
     private String fullName;
-    private String origin;
-    private String destination;
+    private String originAndDestination;
+    private Date flightDate;
+
 
     public String getId() {
         return id;
@@ -17,25 +18,20 @@ public class Ticket {
         return fullName;
     }
 
-    public String getOrigin() {
-        return origin;
-    }
-
-    public String getDestination() {
-        return destination;
+    public String getOriginAndDestination() {
+        return originAndDestination;
     }
 
     public Date getFlightDate() {
         return flightDate;
     }
 
-    private Date flightDate;
 
-    public Ticket(String id, String fullName, String origin, String destination, Date flightDate) {
+
+    public Ticket(String id, String fullName, String originAndDestination, Date flightDate) {
         this.id = id;
         this.fullName = fullName;
-        this.origin = origin;
-        this.destination = destination;
+        this.originAndDestination = originAndDestination;
         this.flightDate = flightDate;
     }
 }
