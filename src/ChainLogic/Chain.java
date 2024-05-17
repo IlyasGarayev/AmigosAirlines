@@ -1,5 +1,7 @@
 package ChainLogic;
 
+import User.User;
+
 public abstract class Chain {
     private Chain next;
 
@@ -7,11 +9,11 @@ public abstract class Chain {
         this.next = next;
     }
 
-    public <T> void doNext(T obj){
+    public void doNext(User user){
         try{
-            process(obj);
+            process(user);
             if(next != null) {
-                next.doNext(obj);
+                next.doNext(user);
             }
             else{
                 System.out.println("Something");
@@ -23,5 +25,5 @@ public abstract class Chain {
         }
     }
 
-    public abstract <T> void process(T obj);
+    public abstract void process(User user);
 }

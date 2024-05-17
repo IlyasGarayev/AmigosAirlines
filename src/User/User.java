@@ -1,5 +1,7 @@
 package User;
 
+import Flight.Flight;
+
 public class User {
     private int id;
     private String name;
@@ -7,6 +9,16 @@ public class User {
     private String identityNumber;
     private String password;
     private String gmail;
+    private Flight desiredFlight;
+
+    public Flight getDesiredFlight() {
+        return desiredFlight;
+    }
+
+    public void setDesiredFlight(Flight desiredFlight) {
+        this.desiredFlight = desiredFlight;
+    }
+
     public User(){
 
     }
