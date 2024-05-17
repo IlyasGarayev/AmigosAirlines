@@ -12,8 +12,6 @@ public class LoginManager implements LoginService {
     @Override
     public void login() {
 
-
-
         System.out.println("Logine Xos Gelmisiniz !");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Gmailinizi daxil edin -> ");

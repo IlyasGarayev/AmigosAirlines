@@ -16,7 +16,7 @@ public abstract class SearchInFile {
     }
 
     public String search(String key, String value) throws IOException {
-        System.out.println("Basladi");
+
         int index = getIndex(key);
         if (index == -1) return "";
         try (InputStream inputStream = Files.newInputStream(path, StandardOpenOption.READ);
