@@ -1,5 +1,6 @@
 package Flight;
 
+import FileManager.FileFlights;
 import FileManager.WriteFile;
 
 import java.io.IOException;
@@ -8,73 +9,133 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FlightManager implements FlightService{
-    private List<Flight> flights ;
-
-    public FlightManager(List<Flight> flights) {
-        this.flights = flights;
-    }
-
+    List<Flight> flights = new ArrayList<>();
+    Path filePath = Paths.get("src/Datas/flights.txt");
     @Override
     public void add(Flight flight) {
-        Path filePath = Paths.get("src/Datas/flights.txt");
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("Ucus nomrersini daxil edin -> ");
         String flightNumber = scanner.nextLine();
-
-        System.out.print("Ucus baslama kordinatini teyin edin -> ");
-        String origin = scanner.nextLine();
-
-        System.out.print("Ucus teyinatinin kordinatini teyin edin -> ");
-        String destination = scanner.nextLine();
-
+        flight.setFlightNumber(flightNumber);
+        System.out.print("Ucus baslama kordinatini ve Sonunu teyin edin -> ");
+        String originAndDestination = scanner.nextLine();
+        flight.setOriginAndDestination(originAndDestination);
         System.out.print("Bilet sayini teyin edin -> ");
         int capacity = Integer.parseInt(scanner.nextLine());
-
+        flight.setCapacity(capacity);
         System.out.print("Ucus vaxtini mueyyen edin (YYYY-MM-DD HH:mm) -> ");
         String flightTimeStr = scanner.nextLine();
-
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date flightTime = null;
         try {
             flightTime = formatter.parse(flightTimeStr);
+            flight.setFlightTime(flightTime);
         } catch (ParseException e) {
             e.printStackTrace();
             return;
         }
-
-        Flight newFlight = new Flight(flightNumber, origin, destination, capacity, 0,flightTime);
-
-        flights.add(newFlight);
         try {
-            //Files.createDirectories(filePath.getParent());
             WriteFile writeFile = new WriteFile(filePath);
             writeFile.write(flight.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         System.out.println("Ucus ugurla elave olundu!");
     }
 
     @Override
-    public void delete(Flight flight) {
-        flights.remove(flight);
-        System.out.println("Ucus silindi!");
+    public void delete() {
+
+        // Problem var hell ederik
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Silenecek Flight Numberi daxil edin - > ");
+        String flightNumber = scanner.nextLine();
+        scanner.close();
+        try {
+            List<String> lines = Files.readAllLines(filePath);
+            List<String> remainingLines = lines.stream()
+                    .filter(line -> !line.startsWith(flightNumber + ";"))
+                    .collect(Collectors.toList());
+            Files.write(filePath, remainingLines);
+            System.out.println(flightNumber + " nomreli ucus legv olundu !");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void getAll() {
-
+        try {
+            List<String> lines = Files.readAllLines(filePath);
+            for (String line : lines) {
+                String[] parts = line.split(";");
+                Flight flight = new Flight();
+                flight.setFlightNumber(parts[0]);
+                flight.setOriginAndDestination(parts[1]);
+                flight.setCapacity(Integer.parseInt(parts[2]));
+                SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                Date flightTime = formatter.parse(parts[3]);
+                flight.setFlightTime(flightTime);
+                flights.add(flight);
+            }
+            for (Flight flight : flights) {
+                System.out.println(flight.toString());
+            }
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void update() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Update olunan Flight Numberi Daxil Edin ->  ");
+        String flightNumber = scanner.nextLine();
+        try {
+            List<String> lines = Files.readAllLines(filePath);
+            boolean found = false;
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                if (line.startsWith(flightNumber + ";")) {
+                    found = true;
+                    System.out.println("Yeni Melumatlari Daxil Et -> ");
+                    Flight updatedFlight = new Flight();
+                    updatedFlight.setFlightNumber(flightNumber);
+
+                    System.out.print("Origin And Destination: ");
+                    updatedFlight.setOriginAndDestination(scanner.nextLine());
+
+
+                    System.out.print("Capacity: ");
+                    updatedFlight.setCapacity(Integer.parseInt(scanner.nextLine()));
+
+                    System.out.print("Flight Time (YYYY-MM-DD HH:mm): ");
+                    String flightTimeStr = scanner.nextLine();
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    Date flightTime = formatter.parse(flightTimeStr);
+                    updatedFlight.setFlightTime(flightTime);
+
+                    lines.set(i, updatedFlight.toString());
+
+                    Files.write(filePath, lines);
+
+                    System.out.println("Flight with number " + flightNumber + " updated successfully.");
+
+                    break;
+                }
+            }
+
+            if (!found) {
+                System.out.println("Flight with number " + flightNumber + " not found.");
+            }
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

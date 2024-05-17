@@ -1,3 +1,6 @@
+import Flight.Flight;
+import Flight.FlightManager;
+import Flight.FlightService;
 import LogInAndRegister.Login.LoginManager;
 import LogInAndRegister.Login.LoginService;
 import LogInAndRegister.Register.RegisterManager;
@@ -13,6 +16,12 @@ public class Main {
         RegisterService registerService = new RegisterManager(user);
 //        registerService.register();
         LoginService loginService = new LoginManager();
-        loginService.login();
+//        loginService.login();
+        Flight flight = new Flight();
+        FlightService flightService = new FlightManager();
+        flightService.add(flight);
+        //flightService.delete();
+        flightService.getAll();
+        flightService.update();
     }
 }

@@ -4,24 +4,26 @@ import java.util.Date;
 
 public class Flight {
     private String flightNumber;
-    private String origin;
-    private String destination;
+    private String originAndDestination;
     private int capacity;
-    private int bookedSeats;
     private Date flightTime;
     public Flight(){
 
     }
-    public Flight(String flightNumber, String origin, String destination, int capacity, int bookedSeats,Date flightTime) {
+    public Flight(String flightNumber, String originAndDestination, int capacity,Date flightTime) {
         this.flightNumber = flightNumber;
-        this.origin = origin;
-        this.destination = destination;
+        this.originAndDestination = originAndDestination;
         this.capacity = capacity;
-        this.bookedSeats = bookedSeats;
         this.flightTime = flightTime;
     }
 
+    public String getOriginAndDestination() {
+        return originAndDestination;
+    }
 
+    public void setOriginAndDestination(String originAndDestination) {
+        this.originAndDestination = originAndDestination;
+    }
 
     public String getFlightNumber() {
         return flightNumber;
@@ -31,13 +33,6 @@ public class Flight {
         this.flightNumber = flightNumber;
     }
 
-    public String getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
 
     public int getCapacity() {
         return capacity;
@@ -47,21 +42,6 @@ public class Flight {
         this.capacity = capacity;
     }
 
-    public int getBookedSeats() {
-        return bookedSeats;
-    }
-
-    public void setBookedSeats(int bookedSeats) {
-        this.bookedSeats = bookedSeats;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
 
     public Date getFlightTime() {
         return flightTime;
@@ -72,12 +52,9 @@ public class Flight {
     }
     @Override
     public String toString() {
-        return "flightNumber='" + flightNumber + '\'' +
-                ", origin='" + origin + '\'' +
-                ", destination='" + destination + '\'' +
-                ", capacity='" + capacity + '\'' +
-                ", bookedSeats='" + bookedSeats + '\'' +
-                ", flightTime='" + flightTime +'\'' + '\n'
-                ;
+        return flightNumber + ";" +
+                originAndDestination + ";" +
+                capacity + ";" +
+                flightTime +'\n';
     }
 }

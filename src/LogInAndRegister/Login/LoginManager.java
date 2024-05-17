@@ -22,7 +22,6 @@ public class LoginManager implements LoginService {
 
         try {
             Path filePath = Paths.get("src/Datas/users.txt");
-            //Files.createDirectories(filePath.getParent());
             FileUsers searchInFile = new FileUsers(filePath);
             String foundRecord = searchInFile.search("gmail", gmail);
             if (!foundRecord.isEmpty()) {
