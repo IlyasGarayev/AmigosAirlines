@@ -1,1 +1,3 @@
 Ilyas;Garayev;1234567890;12345678;ilyas@gmail.com
+Farid;Aliyev;12345678;12345678;farid@gmail.com
+

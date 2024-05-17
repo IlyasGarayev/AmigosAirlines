@@ -74,6 +74,6 @@ public class User {
                 lastname + ";" +
                 identityNumber + ";" +
                 password + ";" +
-                gmail;
+                gmail + "\n";
     }
 }
