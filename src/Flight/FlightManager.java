@@ -52,7 +52,7 @@ public class FlightManager implements FlightService{
 
         flights.add(newFlight);
         try {
-            Files.createDirectories(filePath.getParent());
+            //Files.createDirectories(filePath.getParent());
             WriteFile writeFile = new WriteFile(filePath);
             writeFile.write(flight.toString());
         } catch (IOException e) {

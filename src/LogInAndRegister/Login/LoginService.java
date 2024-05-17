@@ -1,4 +1,4 @@
-package Login;
+package LogInAndRegister.Login;
 
 public interface LoginService {
     void login();
