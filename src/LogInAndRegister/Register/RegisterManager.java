@@ -1,11 +1,9 @@
-package Register;
+package LogInAndRegister.Register;
 
 import FileManager.WriteFile;
-import Register.RegisterService;
 import User.User;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -56,7 +54,7 @@ public class RegisterManager implements RegisterService {
             user.setPassword(password);
         }
         try {
-            Files.createDirectories(filePath.getParent());
+//            Files.createDirectories(filePath.getParent());
             WriteFile writeFile = new WriteFile(filePath);
             writeFile.write(user.toString());
         } catch (IOException e) {
