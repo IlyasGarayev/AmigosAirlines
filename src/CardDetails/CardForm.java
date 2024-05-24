@@ -40,9 +40,6 @@ public class CardForm extends Chain {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        finally {
-            scanner.close();
-        }
 
         System.out.println("Melumatlar tesdiqlendi!");
         Ticket ticket = new Ticket(
@@ -62,7 +59,7 @@ public class CardForm extends Chain {
             }
 
         }
-//        ManagerPage managerPage = new ManagerPage();
-//        managerPage.doNext(user);
+        ManagerPage managerPage = new ManagerPage();
+        managerPage.doNext(user);
     }
 }

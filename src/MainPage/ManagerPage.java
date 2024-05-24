@@ -26,7 +26,7 @@ public class ManagerPage extends Chain {
         System.out.println("1) Bilet al");
         System.out.println("2) Hesabdan cix");
         System.out.println("0) Exit");
-        System.out.println("Seciminizi edin: ");
+//        System.out.println("Seciminizi edin: ");
 
         InputChecker inputChecker = new InputChecker();
         int choice = inputChecker.choiceChecker(2);
@@ -40,7 +40,6 @@ public class ManagerPage extends Chain {
                     throw new RuntimeException(e);
                 }
                 System.exit(0);
-
             }
             case 1 -> {
                 TicketForm ticketForm = new TicketForm();
@@ -52,8 +51,6 @@ public class ManagerPage extends Chain {
             }
         }
 
-        if (getNext() != null) {
-            getNext().doNext(user);
-        }
+
     }
 }
