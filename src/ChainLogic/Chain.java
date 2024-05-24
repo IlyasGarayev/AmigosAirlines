@@ -20,7 +20,6 @@ public abstract class Chain {
     public void doNext(User user){
         try{
             process(user);
-            System.out.println(next);
             if(next != null) {
                 next.doNext(user);
             }

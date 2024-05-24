@@ -2,6 +2,7 @@ package CardDetails;
 
 import ChainLogic.Chain;
 import Flight.Flight;
+import MainPage.ManagerPage;
 import TicketManager.TicketManager;
 import User.User;
 import TicketManager.Ticket;
@@ -61,9 +62,7 @@ public class CardForm extends Chain {
             }
 
         }
-
-
-
-
+        ManagerPage managerPage = new ManagerPage();
+        setNext(managerPage);
     }
 }

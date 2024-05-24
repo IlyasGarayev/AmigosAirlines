@@ -15,10 +15,10 @@ public class ManagerPage extends Chain {
         3) Exit
         */
 
-        System.out.println("1) Bilet al\n");
-        System.out.println("2) Biletlerim\n");
-        System.out.println("3) Hesabdan cix\n");
-        System.out.println("0) Exit\n");
+        System.out.println("1) Bilet al");
+        System.out.println("2) Biletlerim");
+        System.out.println("3) Hesabdan cix");
+        System.out.println("0) Exit");
         System.out.println("Seciminizi edin: ");
 
         int choice = new InputChecker().choiceChecker(3);
