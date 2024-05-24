@@ -15,11 +15,8 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class RegisterManager implements RegisterService {
-    private User user;
+    private User user = new User();
     private boolean isRegisterValid = true;
-    public RegisterManager(User user) {
-        this.user = user;
-    }
 
     @Override
     public void register() {

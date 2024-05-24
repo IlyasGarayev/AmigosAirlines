@@ -1,10 +1,12 @@
 package LogInAndRegister.Login;
 
+import User.User;
+
 import java.util.Scanner;
 
 public class LoginForAdmin implements LoginService{
     @Override
-    public void login() {
+    public void login(User user) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Username daxil edin -> ");
@@ -19,5 +21,4 @@ public class LoginForAdmin implements LoginService{
             System.out.println("Username ve ya Passwordda problem var. Tekrar cehd edin !");
         }
     }
-
 }

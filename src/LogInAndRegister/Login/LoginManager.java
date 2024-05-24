@@ -1,16 +1,18 @@
 package LogInAndRegister.Login;
 
 import FileManager.FileUsers;
+import LogInAndRegister.LogInAndRegisterForm;
+import User.User;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class LoginManager implements LoginService {
+public class LoginManager extends LogInAndRegisterForm {
 
-    @Override
-    public void login() {
+
+    public void login(User user) {
 
         System.out.println("Logine Xos Gelmisiniz !");
         Scanner scanner = new Scanner(System.in);
@@ -28,7 +30,17 @@ public class LoginManager implements LoginService {
                 String[] elements = foundRecord.trim().split(";");
 
                 if(elements[searchInFile.getIndex("password")].equals(password)) {
+
                     System.out.println("Hesaba daxil olundu");
+
+                    user.setName(elements[searchInFile.getIndex("name")]);
+                    user.setLastname(elements[searchInFile.getIndex("lastname")]);
+                    user.setIdentityNumber(elements[searchInFile.getIndex("identityNumber")]);
+                    user.setGmail(elements[searchInFile.getIndex("gmail")]);
+                    user.setPassword(elements[searchInFile.getIndex("password")]);
+
+                    // setNext();
+
                     return;
                 }
 
