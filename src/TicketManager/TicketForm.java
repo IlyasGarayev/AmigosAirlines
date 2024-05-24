@@ -44,24 +44,24 @@ public class TicketForm extends Chain {
             Path path = Paths.get("src/Datas/flights.txt");
              FileFlights searchInFile = new FileFlights(path);
              String line = searchInFile.search("originAndDestination", origin + destination);
-             if(line != null){
+             if(!line.isEmpty()){
                  System.out.println(line);
                  String[] elemets = line.trim().split(";");
                  String dateString = elemets[searchInFile.getIndex("flightTime")];
                  SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 
-                 try {
-                     Date date = formatter.parse(dateString);
-                     Flight flight = new Flight(
-                             elemets[searchInFile.getIndex("flightNumber")],
-                             origin+destination,
-                             Integer.parseInt(elemets[searchInFile.getIndex("capacity")]),
-                             date
-                     );
-                     return flight;
-                 } catch (ParseException e) {
-                     e.printStackTrace();
-                 }
+
+                 Date date = formatter.parse(dateString);
+                 Flight flight = new Flight(
+                         elemets[searchInFile.getIndex("flightNumber")],
+                         origin+destination,
+                         Integer.parseInt(elemets[searchInFile.getIndex("capacity")]),
+                         date
+                 );
+                 return flight;
+
+             }else {
+                 System.out.println("Ucus tapilmadi!!");
              }
         }catch(Exception ex){
             throw new RuntimeException(ex);
