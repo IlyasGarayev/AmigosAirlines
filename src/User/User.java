@@ -4,7 +4,7 @@ import Flight.Flight;
 
 public class User {
 
-    // Cavidanin update etdi
+
     private int id;
     private String name;
     private String lastname;
