@@ -7,6 +7,8 @@ import LogInAndRegister.Register.RegisterManager;
 import SecurityCheck.InputChecker;
 import User.User;
 
+import java.util.Scanner;
+
 public class LogInAndRegisterForm extends Chain {
 
     @Override
@@ -18,6 +20,7 @@ public class LogInAndRegisterForm extends Chain {
         RegisterManager registerManager = new RegisterManager();
         LoginForAdmin loginForAdmin = new LoginForAdmin();
 
+        //Scanner scanner = new Scanner(System.in);
         int choice = new InputChecker().choiceChecker(3);
 
 

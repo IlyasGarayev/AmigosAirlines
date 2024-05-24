@@ -56,13 +56,13 @@ public class CardForm extends Chain {
         for (Map.Entry<Flight, List<Ticket>> map :
                 TicketManager.allTickets.entrySet()) {
 
-            if (map.getKey().getFlightNumber().equals(user.getDesiredFlight().getFlightNumber())){
+            if (map.getKey().getFlightNumber().equals(user.getDesiredFlight().getFlightNumber())) {
                 map.getValue().add(ticket);
                 break;
             }
 
         }
-        ManagerPage managerPage = new ManagerPage();
-        setNext(managerPage);
+//        ManagerPage managerPage = new ManagerPage();
+//        managerPage.doNext(user);
     }
 }

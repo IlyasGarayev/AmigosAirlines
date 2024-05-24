@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicketForm extends Chain {
@@ -33,9 +34,8 @@ public class TicketForm extends Chain {
         if(flight != null){
             System.out.println("Bilet tapildi");
             System.out.println(origin + " - " + destination);
-            System.out.println("Date: "); // Duzeldilecek...
-            System.out.println("Time: " + "\n\n");
-
+            System.out.println("Date: " + flight.getFlightTime()); // Duzeldilecek...
+            System.out.println("Price: " + new Random().nextInt(100,1000) + "$");
             setNext(new CardForm());
 
         }
@@ -47,6 +47,7 @@ public class TicketForm extends Chain {
 
     private void mainPageOrTryAgain(){
         System.out.println("1) Yeniden bilet axtar\n2) Ana sehifeye qayit\n0) Exit");
+        //Scanner scanner = new Scanner(System.in);
         int choice = new InputChecker().choiceChecker(2);
 
         switch (choice){

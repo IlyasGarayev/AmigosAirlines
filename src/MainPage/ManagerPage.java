@@ -6,7 +6,15 @@ import SecurityCheck.InputChecker;
 import TicketManager.TicketForm;
 import User.User;
 
+import java.util.Scanner;
+
 public class ManagerPage extends Chain {
+    private Scanner scanner;
+
+
+    public ManagerPage(){
+
+    }
     @Override
     public void process(User user) {
         /*
@@ -16,14 +24,14 @@ public class ManagerPage extends Chain {
         */
 
         System.out.println("1) Bilet al");
-        System.out.println("2) Biletlerim");
-        System.out.println("3) Hesabdan cix");
+        System.out.println("2) Hesabdan cix");
         System.out.println("0) Exit");
         System.out.println("Seciminizi edin: ");
 
-        int choice = new InputChecker().choiceChecker(3);
+        InputChecker inputChecker = new InputChecker();
+        int choice = inputChecker.choiceChecker(2);
 
-        switch(choice){
+        switch (choice) {
             case 0 -> {
                 System.out.println("Programdan cixilir...");
                 try {
@@ -31,18 +39,21 @@ public class ManagerPage extends Chain {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-
                 System.exit(0);
+
             }
             case 1 -> {
                 TicketForm ticketForm = new TicketForm();
                 setNext(ticketForm);
             }
-            case 2 -> {}
-            case 3 -> {
+            case 2 -> {
                 user = new User();
                 setNext(new LogInAndRegisterForm());
             }
+        }
+
+        if (getNext() != null) {
+            getNext().doNext(user);
         }
     }
 }
