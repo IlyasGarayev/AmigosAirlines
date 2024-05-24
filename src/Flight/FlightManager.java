@@ -52,7 +52,6 @@ public class FlightManager implements FlightService{
     @Override
     public void delete() {
 
-        // Problem var hell ederik
         Scanner scanner = new Scanner(System.in);
         System.out.println("Silenecek Flight Numberi daxil edin - > ");
         String flightNumber = scanner.nextLine();
@@ -95,8 +94,14 @@ public class FlightManager implements FlightService{
     @Override
     public void update() {
         Scanner scanner = new Scanner(System.in);
+        String flightNumber = "";
         System.out.print("Update olunan Flight Numberi Daxil Edin ->  ");
-        String flightNumber = scanner.nextLine();
+        flightNumber = scanner.nextLine().trim();
+        if (flightNumber.isEmpty()) {
+            System.out.println("Flight Number cannot be empty. Please try again.");
+            throw new NoSuchElementException("No line found");
+        }
+
         try {
             List<String> lines = Files.readAllLines(filePath);
             boolean found = false;
@@ -111,9 +116,9 @@ public class FlightManager implements FlightService{
                     System.out.print("Origin And Destination: ");
                     updatedFlight.setOriginAndDestination(scanner.nextLine());
 
-
                     System.out.print("Capacity: ");
-                    updatedFlight.setCapacity(Integer.parseInt(scanner.nextLine()));
+                    int capacity = Integer.parseInt(scanner.nextLine());
+                    updatedFlight.setCapacity(capacity);
 
                     System.out.print("Flight Time (YYYY-MM-DD HH:mm): ");
                     String flightTimeStr = scanner.nextLine();
@@ -138,6 +143,6 @@ public class FlightManager implements FlightService{
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
-
     }
+
 }

@@ -23,11 +23,12 @@ public class Main {
 //        Flight flight = new Flight();
 //        FlightService flightService = new FlightManager();
 ////        flightService.add(flight);
-//        //flightService.delete();
 ////        flightService.getAll();
 ////        flightService.update();
-////        CardForm cardForm = new CardForm();
-////        cardForm.process(user);
+//          flightService.delete();
+
+//        CardForm cardForm = new CardForm();
+//        cardForm.process(user);
         User user = new User();
 //        new RegisterManager(user).register();
 
