@@ -1,6 +1,8 @@
 package LogInAndRegister.Register;
 
+import ChainLogic.Chain;
 import FileManager.WriteFile;
+import LogInAndRegister.LogInAndRegisterForm;
 import User.User;
 
 
@@ -14,12 +16,13 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class RegisterManager implements RegisterService {
+public class RegisterManager extends Chain {
     private User user = new User();
     private boolean isRegisterValid = true;
 
+
     @Override
-    public void register() {
+    public void process(User user1) {
         Path filePath = Paths.get("src/Datas/users.txt");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registra Xos Gelmisiniz !");
@@ -63,7 +66,11 @@ public class RegisterManager implements RegisterService {
             }else{
                 WriteFile writeFile = new WriteFile(filePath);
                 writeFile.write(user.toString());
-                System.out.println("Registered successfully");
+                System.out.println("Registered successfully\n");
+                LogInAndRegisterForm logInAgain = new LogInAndRegisterForm();
+                this.setNext(logInAgain);
+                System.out.println(this.getNext());
+                System.out.println("Salam");
             }
 
         } catch (IOException e) {

@@ -1,7 +1,8 @@
 package LogInAndRegister.Login;
 
+import ChainLogic.Chain;
 import FileManager.FileUsers;
-import LogInAndRegister.LogInAndRegisterForm;
+import MainPage.ManagerPage;
 import User.User;
 
 import java.io.IOException;
@@ -9,10 +10,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class LoginManager extends LogInAndRegisterForm {
+public class LoginManager extends Chain {
 
-
-    public void login(User user) {
+    @Override
+    public void process(User user) {
 
         System.out.println("Logine Xos Gelmisiniz !");
         Scanner scanner = new Scanner(System.in);
@@ -39,7 +40,7 @@ public class LoginManager extends LogInAndRegisterForm {
                     user.setGmail(elements[searchInFile.getIndex("gmail")]);
                     user.setPassword(elements[searchInFile.getIndex("password")]);
 
-                    // setNext();
+                    setNext(new ManagerPage());
 
                     return;
                 }

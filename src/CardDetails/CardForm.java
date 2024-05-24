@@ -52,11 +52,11 @@ public class CardForm extends Chain {
 
 
         );
-        for (Map.Entry<Flight, List<Ticket>> me :
+        for (Map.Entry<Flight, List<Ticket>> map :
                 TicketManager.allTickets.entrySet()) {
 
-            if (me.getKey().getFlightNumber().equals(user.getDesiredFlight().getFlightNumber())){
-                me.getValue().add(ticket);
+            if (map.getKey().getFlightNumber().equals(user.getDesiredFlight().getFlightNumber())){
+                map.getValue().add(ticket);
                 break;
             }
 

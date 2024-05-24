@@ -1,9 +1,12 @@
 package TicketManager;
 
+import CardDetails.CardForm;
 import ChainLogic.Chain;
 import FileManager.FileFlights;
 import Flight.Flight;
 import Flight.FlightManager;
+import MainPage.ManagerPage;
+import SecurityCheck.InputChecker;
 import User.User;
 
 import java.nio.file.Path;
@@ -31,11 +34,34 @@ public class TicketForm extends Chain {
             System.out.println("Bilet tapildi");
             System.out.println(origin + " - " + destination);
             System.out.println("Date: "); // Duzeldilecek...
-            System.out.println("Time: ");
+            System.out.println("Time: " + "\n\n");
+
+            setNext(new CardForm());
 
         }
         else{
-            System.out.println("Qeyd etdiyiniz istiqametde ucus tapilmadi.");
+            System.out.println("Qeyd etdiyiniz istiqametde ucus tapilmadi.\n");
+            mainPageOrTryAgain();
+        }
+    }
+
+    private void mainPageOrTryAgain(){
+        System.out.println("1) Yeniden bilet axtar\n2) Ana sehifeye qayit\n0) Exit");
+        int choice = new InputChecker().choiceChecker(2);
+
+        switch (choice){
+            case 0 -> {
+                System.out.println("Programdan cixilir...");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                System.exit(0);
+            }
+            case 1 -> setNext(new TicketForm());
+            case 2 -> setNext(new ManagerPage());
         }
     }
 
@@ -58,10 +84,12 @@ public class TicketForm extends Chain {
                          Integer.parseInt(elemets[searchInFile.getIndex("capacity")]),
                          date
                  );
+
                  return flight;
 
              }else {
                  System.out.println("Ucus tapilmadi!!");
+
              }
         }catch(Exception ex){
             throw new RuntimeException(ex);

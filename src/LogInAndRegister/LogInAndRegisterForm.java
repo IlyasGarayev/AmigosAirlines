@@ -1,19 +1,24 @@
 package LogInAndRegister;
 
 import ChainLogic.Chain;
+import LogInAndRegister.Login.LoginForAdmin;
 import LogInAndRegister.Login.LoginManager;
 import LogInAndRegister.Register.RegisterManager;
 import SecurityCheck.InputChecker;
 import User.User;
 
 public class LogInAndRegisterForm extends Chain {
-    LoginManager loginManager = new LoginManager();
-    RegisterManager registerManager = new RegisterManager();
+
     @Override
     public void process(User user) {
         System.out.println("Amigos Airlines tətbiqinə xoş gəlmisiniz!");
         System.out.println("1) Log in\n2) Register\n0) Exit");
-        int choice = new InputChecker().choiceChecker(2);
+
+        LoginManager loginManager = new LoginManager();
+        RegisterManager registerManager = new RegisterManager();
+        LoginForAdmin loginForAdmin = new LoginForAdmin();
+
+        int choice = new InputChecker().choiceChecker(3);
 
 
         switch (choice){
@@ -27,8 +32,9 @@ public class LogInAndRegisterForm extends Chain {
 
                 System.exit(0);
             }
-            case 1 -> loginManager.login(user);
-            case 2 -> registerManager.register();
+            case 1 -> setNext(new LoginManager());
+            case 2 -> setNext(new RegisterManager());
+            case 3 -> setNext(new LoginForAdmin());
         }
     }
 }

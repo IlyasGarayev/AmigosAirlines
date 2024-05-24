@@ -1,12 +1,13 @@
 package LogInAndRegister.Login;
 
+import ChainLogic.Chain;
 import User.User;
 
 import java.util.Scanner;
 
-public class LoginForAdmin implements LoginService{
+public class LoginForAdmin extends Chain {
     @Override
-    public void login(User user) {
+    public void process(User user) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Username daxil edin -> ");

@@ -13,10 +13,14 @@ public abstract class Chain {
     public void setNext(Chain next) {
         this.next = next;
     }
+    public Chain getNext(){
+        return next;
+    }
 
     public void doNext(User user){
         try{
             process(user);
+            System.out.println(next);
             if(next != null) {
                 next.doNext(user);
             }
