@@ -1,6 +1,8 @@
 package LogInAndRegister.Login;
 
 import ChainLogic.Chain;
+import Flight.AddFlightsAdmin;
+import LogInAndRegister.LogInAndRegisterForm;
 import User.User;
 
 import java.util.Scanner;
@@ -18,8 +20,10 @@ public class LoginForAdmin extends Chain {
 
         if ("admin12345".equals(password) && "admin".equals(username)) {
             System.out.println("Login ugurla basa catdi.");
+            setNext(new AddFlightsAdmin());
         } else {
             System.out.println("Username ve ya Passwordda problem var. Tekrar cehd edin !");
+            setNext(new LogInAndRegisterForm());
         }
     }
 }

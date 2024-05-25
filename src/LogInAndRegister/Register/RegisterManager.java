@@ -69,8 +69,8 @@ public class RegisterManager extends Chain {
                 System.out.println("Registered successfully\n");
                 LogInAndRegisterForm logInAgain = new LogInAndRegisterForm();
                 this.setNext(logInAgain);
-                System.out.println(this.getNext());
-                System.out.println("Salam");
+//                System.out.println(this.getNext());
+//                System.out.println("Salam");
             }
 
         } catch (IOException e) {
